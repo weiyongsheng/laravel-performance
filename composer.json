@@ -1,0 +1,29 @@
+{
+  "name": "weiyongsheng/laravel-performance",
+  "description": "laravel performance and sql dump.",
+  "keywords": [
+    "laravel",
+    "performance",
+    "mysql",
+    "sql",
+    "dump",
+    "print"
+  ],
+  "authors": [
+    {
+      "name": "weiyongsheng",
+      "email": "shenglian3344@163.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8 || ^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wys\\Laravel\\": "src/"
+    }
+  }
+}
