@@ -24,6 +24,9 @@
   "autoload": {
     "psr-4": {
       "Wys\\Laravel\\": "src/"
-    }
+    },
+    "files": [
+        "src/helpers.php"
+    ]
   }
 }
