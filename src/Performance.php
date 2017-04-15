@@ -1,5 +1,7 @@
 <?php namespace Wys\Laravel;
 
+use Illuminate\Database\Events\QueryExecuted;
+
 class Performance
 {
     protected $benchmarks = [];
@@ -25,7 +27,7 @@ class Performance
      *
      * @param string $name
      *
-     * @return \Angejia\Services\Monitor\Performance|static
+     * @return static
      */
     public static function getInstance()
     {
@@ -127,7 +129,7 @@ class Performance
     public function startRecordQueries()
     {
         if ($this->is_bind_events !== true) {
-            app('events')->listen('illuminate.query', [$this, 'registerQuery']);
+            app('events')->listen(QueryExecuted::class, [$this, 'registerQuery']);
         }
 
         $this->flushQueries();
@@ -138,14 +140,15 @@ class Performance
     /**
      * Log the query into the internal store
      *
-     * @param $query
-     * @param $bindings
-     * @param $time
-     * @param $connection
+     * @param \Illuminate\Database\Events\QueryExecuted $event
      *
      */
-    public function registerQuery($query, $bindings, $time, $connection)
+    public function registerQuery(QueryExecuted $event)
     {
+        $query = $event->sql;
+        $bindings = $event->bindings;
+        $time = $event->time;
+        $connection = $event->connectionName;
         $this->queries[] = compact('query', 'bindings', 'time', 'connection');
     }
 
