@@ -1,6 +1,7 @@
 {
   "name": "weiyongsheng/laravel-performance",
   "description": "laravel performance and sql dump.",
+  "license": "MIT",
   "keywords": [
     "laravel",
     "performance",
